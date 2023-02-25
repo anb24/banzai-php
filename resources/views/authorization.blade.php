@@ -4,15 +4,27 @@
 
 @section('main_content')
     <main class="form-signin w-50 m-auto">
-        <form>
-            <h1 class="h3 mb-3 fw-normal">Пожалуйста войдите</h1>
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $errors)
+                        <li>{{ $errors }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="post" action="/auth/check">
+            @csrf
+            <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" name="user_email" class="form-control" id="user_email" placeholder="name@example.com">
                 <label for="floatingInput">Email адрес</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" name="user_password" class="form-control" id="user_password" placeholder="Password">
                 <label for="floatingPassword">Пароль</label>
             </div>
 

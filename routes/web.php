@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [MainController::class, 'home']);
 
-Route::get('/auth', function () {
-    return view('authorization');
-});
+Route::get('/auth', [MainController::class, 'authorization']);
+Route::post('/auth/check', [MainController::class, 'authorization_check']);
 
-Route::get('/reg', function () {
-    return view('registration');
-});
+Route::get('/reg', [MainController::class, 'registration']);
+Route::post('/reg/check', [MainController::class, 'registration_check']);
 
-Route::get('/my', function () {
-    return view('myPage');
-});
+Route::get('/my', [MainController::class, 'myPage']);
